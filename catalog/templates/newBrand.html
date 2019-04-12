@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<style>
+	.b{
+		background-color: burlywood;
+	}
+	.h1{
+	
+	}
+</style>
+	</head>
+<body class="b">
+
+<h1 style=" text-color:mediumblue">New Brand</h1>
+{% with messages = get_flashed_messages() %}
+
+
+<div class = 'pane'>
+<form action="#" method = 'post'>
+
+	<dl>
+		<dt>Name:</dt>
+		<dd><input type ='text' size='30' name='name'></dd>
+		<dt>pic:</dt>
+		<dd><input type ='text' size="30" placeholder='paste pic url here' name='pic'></dd>
+		<dt>description:</dt>
+		<dd><textarea name = 'description' rows='5' cols='40' > </textarea></dd>
+	</dl>
+	{% endwith %}
+
+
+
+	
+
+
+
+<input type='submit' value='Create'>
+
+</form>
+
+</body>
+</html>

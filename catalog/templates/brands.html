@@ -1,0 +1,91 @@
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style>
+
+	    *{
+	    	background-color: white;
+
+	    }
+	    .column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+  border-radius: 30px;
+  }
+  
+
+.row::after {
+  clear: both;
+  }
+		h1{
+			color: green;
+			text-align: center;
+			font-size: 100px;
+		}
+		.btn-default{
+			font-size: 20px;
+			margin: 5px;
+			float:right;
+			margin-top: -5px;
+		}
+		.hr{
+			 display:block;
+			 margin-top: 0.5em;
+			 margin-bottom: 0.5em;
+			 margin-left: auto;
+			 margin-right: auto;
+			 border-style: inset;
+			 border-width: 2px;
+		}
+
+	</style>
+	
+		</head>
+<body>
+
+<h1 style="width: 100%; height: 150px; padding-top: 10px; background-color: lightgreen;">Brands</h1>
+<!-- <h2>{{ owner }}</h2>
+ -->
+
+	{% if owner  %}
+<a style="margin: 15px; font-size: 25px;" href="{{url_for('newBrand')}}">create a new brand</a>
+<a style=" margin: 05px; font-size: 20px; float: right; " href="/gdisconnect " >Click Here to Logout </a>
+<hr class="hr">
+{% endif %}
+
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+	<div class="row">
+		{% for brand in brands %}
+		<div class="col-lg-4 col-md-3 col-sm-6" style="margin-top: 20px;">
+				<div class="card text-center text-white bag-secondary" style="height: 350px; padding: 20px; border: 1px solid rgba(0,0,0,0.7); border-radius: 10px;">
+					<div class="card-block">
+
+			
+			<a href = "{{url_for('showMobile', brand_id = brand.id)}}"> <h3>{{brand.name}}</h3></a>
+			<img style="width: 150px;height: 150px" src="{{ brand.pic }}">
+			<p style="font-size: 30px;">{{ brand.description }}</p>
+            {% if owner == brand.user_id %}
+			<p><a  style="float: left;" href = "{{url_for('editBrand',brand_id = brand.id)}}">Edit</a></p>
+
+			<p> <a style="float: right;"href = "{{url_for('deleteBrand',brand_id = brand.id)}}">Delete</a> </p>
+			{% endif %}
+			</div>
+		</div>
+	</div>
+
+
+		{% endfor %}
+	</div>
+		</div>
+
+</body>
+
+</html>
